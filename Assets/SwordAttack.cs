@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
-
+    public Collider2D swordCollider;
+    public float damage = 3;
     Vector2 rightAttackOffset;
-    Collider2D swordCollider;
-
+    
     private void Start()
     {
-        swordCollider = GetComponent<Collider2D>();
         rightAttackOffset = transform.localPosition;
     }
 
@@ -41,6 +40,12 @@ public class SwordAttack : MonoBehaviour
         if(other.tag == "Enemy")
         {
             //deal damage
+            Enemy enemy = other.GetComponent<Enemy>();
+
+            if(enemy != null)
+            {
+                enemy.Health -= damage;
+            }
             
         }
     }
